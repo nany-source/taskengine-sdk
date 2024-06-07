@@ -11,7 +11,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "TaskEngine\\SDK\\ServiceProvider"
+                "TaskEngine\\SDK\\TaskEngineServiceProvider"
             ]
         }
     },

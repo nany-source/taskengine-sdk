@@ -4,7 +4,6 @@ namespace TaskEngine\SDK;
 
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
-use TaskEngine\SDK\Libs\Client;
 
 class TaskEngineServiceProvider extends ServiceProvider implements DeferrableProvider
 {
