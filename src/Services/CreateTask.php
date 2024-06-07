@@ -14,7 +14,7 @@ class CreateTask {
 
     /**
      * 创建任务
-     * @return array|false 任务创建结果, 如果请求失败则返回false
+     * @return mixed 创建失败抛出错误, 否则返回result内的结果或返回体
      */
     public function create()
     {
