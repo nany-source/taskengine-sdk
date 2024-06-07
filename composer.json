@@ -1,0 +1,29 @@
+{
+    "name": "nany/taskengine-sdk",
+    "description": "TaskEngine SDK for App",
+    "license": "GPL-3.0-or-later",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "TaskEngine\\SDK\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TaskEngine\\SDK\\ServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "nany",
+            "email": "273612633@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "illuminate/support": "^8.0"
+    },
+    "minimum-stability": "dev"
+}
