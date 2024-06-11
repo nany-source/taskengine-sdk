@@ -26,6 +26,6 @@ class TaskEngineServiceProvider extends ServiceProvider implements DeferrablePro
     // 延迟加载, 在首次需要的时候才加载
     public function provides()
     {
-        return ['taskengine'];
+        return [TaskEngineService::class];
     }
 }
