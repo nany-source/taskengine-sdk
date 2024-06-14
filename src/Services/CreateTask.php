@@ -35,7 +35,7 @@ class CreateTask {
      */
     public function setAction(string $actionName)
     {
-        if (! isset($actionName)) {
+        if (empty($actionName)) {
             throw new \Exception('action name is empty');
         }
         $this->_options['action'] = $actionName;
@@ -98,6 +98,22 @@ class CreateTask {
             throw new \Exception('Invalid callback url');
         }
         $this->_options['callbackUrl'] = $url;
+        return $this;
+    }
+
+    /**
+     * 设置回调重试次数
+     * @param int $retryCount 重试次数
+     * @return CreateTask
+     */
+    public function setCallbackRetryCount(int $retryCount)
+    {
+        // 如果重试次数小于等于0, 则不设置
+        if ($retryCount <= 0) {
+            return $this;
+        }
+
+        $this->_options['callbackRetryCount'] = $retryCount;
         return $this;
     }
 
