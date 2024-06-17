@@ -118,6 +118,16 @@ class CreateTask {
     }
 
     /**
+     * 设置为保活任务
+     * @return $this 
+     */
+    public function isKeepAliveTask()
+    {
+        $this->_options['isKeepAlive'] = true;
+        return $this;
+    }
+
+    /**
      * 设置条件
      * @param bool $condition 条件
      * @param callable $callback 符合条件时回调
