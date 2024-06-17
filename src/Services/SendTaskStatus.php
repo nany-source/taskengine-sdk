@@ -2,7 +2,7 @@
 
 namespace TaskEngine\SDK\Services;
 
-class SendTaskStatus extends BaseServices
+class SendTaskStatus
 {
     const CALLBACK_TASKSTATUS = [
         'keepalive' => 1,
@@ -13,7 +13,7 @@ class SendTaskStatus extends BaseServices
      * 返回任务保活的结构体
      * @return void 
      */
-    public function keepAlive()
+    public static function keepAlive()
     {
         return ['nextStatus' => self::CALLBACK_TASKSTATUS['keepalive']];
     }
@@ -22,7 +22,7 @@ class SendTaskStatus extends BaseServices
      * 返回任务完成的结构体
      * @return void 
      */
-    public function complete()
+    public static function complete()
     {
         return ['nextStatus' => self::CALLBACK_TASKSTATUS['complete']];
     }

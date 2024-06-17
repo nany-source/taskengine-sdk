@@ -13,6 +13,6 @@ class TaskEngineService {
 
     public static function sendStatusQuery()
     {
-        return new SendTaskStatus();
+        return SendTaskStatus::class;
     }
 }
