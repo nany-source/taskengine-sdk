@@ -11,7 +11,7 @@ class SendTaskStatus
 
     /**
      * 返回任务保活的结构体
-     * @return void 
+     * @return array 
      */
     public static function keepAlive()
     {
@@ -20,7 +20,7 @@ class SendTaskStatus
 
     /**
      * 返回任务完成的结构体
-     * @return void 
+     * @return array
      */
     public static function complete()
     {

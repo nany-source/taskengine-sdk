@@ -6,13 +6,30 @@ use TaskEngine\SDK\Services\CreateTask;
 use TaskEngine\SDK\Services\SendTaskStatus;
 
 class TaskEngineService {
+    /**
+     * 创建任务
+     * @return CreateTask
+     */
     public static function createQuery()
     {
         return new CreateTask();
     }
 
-    public static function sendStatusQuery()
+    /**
+     * 任务状态改为保活状态
+     * @return array
+     */
+    public static function sendKeepAliveStatus()
     {
-        return SendTaskStatus::class;
+        return SendTaskStatus::keepAlive();
+    }
+
+    /**
+     * 任务状态改为完成状态
+     * @return array
+     */
+    public static function sendCompleteStatus()
+    {
+        return SendTaskStatus::complete();
     }
 }
