@@ -129,6 +129,16 @@ class CreateTask
     }
 
     /**
+     * 设置为沙盒任务
+     * @return $this 
+     */
+    public function isSandBoxTask()
+    {
+        $this->_options['isSandBox'] = true;
+        return $this;
+    }
+
+    /**
      * 设置条件
      * @param bool $condition 条件
      * @param callable $callback 符合条件时回调
