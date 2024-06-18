@@ -36,7 +36,7 @@ class CreateTask
      */
     public function setQueueData(string $queueKey, array $queueDatas)
     {
-        $this->_options['queueData'][$queueKey] = array_values($queueDatas);
+        $this->_options['queueData'][$queueKey] = implode('|', array_values($queueDatas));
         return $this;
     }
 
