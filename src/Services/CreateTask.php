@@ -29,6 +29,18 @@ class CreateTask
     }
 
     /**
+     * 设置任务的队列数据
+     * @param string $queueKey 队列名
+     * @param array $queueDatas 队列数据
+     * @return $this 
+     */
+    public function setQueueData(string $queueKey, array $queueDatas)
+    {
+        $this->_options['queueData'][$queueKey] = array_values($queueDatas);
+        return $this;
+    }
+
+    /**
      * 设置任务Action
      * @param string $actionName Action名称
      * @return CreateTask
