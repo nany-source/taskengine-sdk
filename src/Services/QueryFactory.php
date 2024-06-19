@@ -4,6 +4,7 @@ namespace TaskEngine\SDK\Services;
 
 use Exception;
 use TaskEngine\SDK\Libs\Client;
+use Illuminate\Support\Arr;
 
 class QueryFactory
 {
@@ -63,7 +64,7 @@ class QueryFactory
         }
 
         // 发送请求
-        return (new Client())->get($this->_getUrl('detail'), $this->_options);
+        return (new Client())->get($this->_getUrl('detail'), $this->_options['taskId']);
     }
     
     /**
