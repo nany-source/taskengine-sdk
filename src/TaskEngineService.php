@@ -2,7 +2,7 @@
 
 namespace TaskEngine\SDK;
 
-use TaskEngine\SDK\Services\CreateTask;
+use TaskEngine\SDK\Services\QueryFactory;
 use TaskEngine\SDK\Services\SendTaskStatus;
 
 class TaskEngineService {
@@ -10,9 +10,9 @@ class TaskEngineService {
      * 创建任务
      * @return CreateTask
      */
-    public static function createQuery()
+    public static function query()
     {
-        return new CreateTask();
+        return new QueryFactory();
     }
 
     /**

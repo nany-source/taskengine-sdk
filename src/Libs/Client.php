@@ -27,13 +27,12 @@ class Client {
      * 发送请求
      * @param string $method 请求方法
      * @param string $url 请求地址
-     * @param array $params 请求参数
+     * @param array $params 请求参数(post下会被json_encode后发送)
      * @param array $reqheaders 请求头
-     * @param bool $buildQuery 是否构建查询
      * @return mixed
      * @throws Exception 
      */
-    private function request(string $method, string $url, array $params = [], array $reqheaders = [], $buildQuery = true)
+    private function request(string $method, string $url, array $params = [], array $reqheaders = [])
     {
         // 组合url
         $endpoint = rtrim(($this->apiEndpoint), '/') . '/' . ltrim($url, '/');
@@ -50,7 +49,8 @@ class Client {
                 break;
             case self::METHOD_POST:
                 curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $buildQuery ? preg_replace('/%5B[0-9]+%5D/simU', '', http_build_query($params)) : $params);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
+                $reqheaders[] = 'Content-Type: application/json';
                 break;
             default:
                 curl_close($ch);
@@ -123,12 +123,11 @@ class Client {
      * @param string $url 请求地址
      * @param array $params 请求参数
      * @param array $headers 请求头
-     * @param bool $buildQuery 是否构建查询
      * @return mixed 
      * @throws Exception 
      */
-    public function post(string $url, array $params = [], array $headers = [], bool $buildQuery = true)
+    public function post(string $url, array $params = [], array $headers = [])
     {
-        return $this->request(self::METHOD_POST, $url, $params, $headers, $buildQuery);
+        return $this->request(self::METHOD_POST, $url, $params, $headers);
     }
 }

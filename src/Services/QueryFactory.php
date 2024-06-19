@@ -2,9 +2,10 @@
 
 namespace TaskEngine\SDK\Services;
 
+use Exception;
 use TaskEngine\SDK\Libs\Client;
 
-class CreateTask
+class QueryFactory
 {
     private $_options;
 
@@ -12,6 +13,13 @@ class CreateTask
     const HIGHT_PRIORITY = 3;
     const NORMAL_PRIORITY = 2;
     const LOW_PRIORITY = 1;
+
+    private function _getUrl(string $routeName)
+    {
+        $baseUrl = ($this->_options['isSandBox'] ?? false) ? '/api/task/sandbox/' : '/api/task/';
+
+        return $baseUrl . $routeName;
+    }
 
     /**
      * 创建任务
@@ -25,7 +33,48 @@ class CreateTask
         }
 
         // 发送请求
-        return (new Client())->post('/api/task/create', $this->_options);
+        return (new Client())->post($this->_getUrl('create'), $this->_options);
+    }
+
+    /**
+     * 推送数据
+     * @return mixed 推送失败抛出错误, 否则返回result内的结果或返回体
+     */
+    public function pushData()
+    {
+        // taskId不能为空
+        if (! isset($this->_options['taskId'])) {
+            throw new \Exception('TaskId is empty');
+        }
+
+        // 发送请求
+        return (new Client())->post($this->_getUrl('pushData'), $this->_options);
+    }
+
+    /**
+     * 获取任务详情
+     * @return mixed 获取失败抛出错误, 否则返回result内的结果或返回体
+     */
+    public function detail()
+    {
+        // taskId不能为空
+        if (! isset($this->_options['taskId'])) {
+            throw new \Exception('TaskId is empty');
+        }
+
+        // 发送请求
+        return (new Client())->get($this->_getUrl('detail'), $this->_options);
+    }
+    
+    /**
+     * 设置任务ID
+     * @param int $taskId 
+     * @return $this 
+     */
+    public function setTaskId(int $taskId)
+    {
+        $this->_options['taskId'] = $taskId;
+        return $this;
     }
 
     /**
@@ -36,7 +85,7 @@ class CreateTask
      */
     public function setQueueData(string $queueKey, array $queueDatas)
     {
-        $this->_options['queueData'][$queueKey] = implode('|', array_values($queueDatas));
+        $this->_options['queueData'][$queueKey] = array_values($queueDatas);
         return $this;
     }
 
