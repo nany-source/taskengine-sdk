@@ -85,17 +85,17 @@ class Client {
         // 如果为json类型
         if ($httpContentType === 'application/json') {
             if ($data = json_decode($response, true)) {
-                // 检查是否为return的请求体
-                if(isset($data['code'])) {
-                    // 如果代码不为0存在message字段
-                    if ($data['code'] !== 0) {
-                        // 抛出错误
-                        throw new Exception($data['message'] ?? json_encode($data));
-                    } else {
-                        // 返回请求体中的result字段, 不存在则为整个json数据
-                        return $data['result'] ?? $data;
-                    }
-                }
+                // // 检查是否为return的请求体
+                // if(isset($data['code'])) {
+                //     // 如果代码不为0存在message字段
+                //     if ($data['code'] !== 0) {
+                //         // 抛出错误
+                //         throw new Exception($data['message'] ?? json_encode($data));
+                //     } else {
+                //         // 返回请求体中的result字段, 不存在则为整个json数据
+                //         return $data['result'] ?? $data;
+                //     }
+                // }
                 // 否则返回json数据
                 return $data;
             }
