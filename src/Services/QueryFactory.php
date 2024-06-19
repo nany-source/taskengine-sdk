@@ -64,7 +64,7 @@ class QueryFactory
         }
 
         // 发送请求
-        return (new Client())->get($this->_getUrl('detail'), $this->_options['taskId']);
+        return (new Client())->get($this->_getUrl('detail'), [$this->_options['taskId']]);
     }
     
     /**
